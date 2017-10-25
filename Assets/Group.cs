@@ -121,12 +121,15 @@ public class Group : MonoBehaviour {
     }
 
     // Use this for initialization
-    void Start () {
-        // Default position not valid? Then it's game over
-        if (!isValidGridPos())
+    void Start()
+    {
+        if (0 <= transform.position.x && transform.position.x <= 9)
         {
-            Debug.Log("GAME OVER");
-            Destroy(gameObject);
+            if (!isValidGridPos())
+            {
+                Debug.Log("GAME OVER");
+                Destroy(gameObject);
+            }
         }
     }
 	
