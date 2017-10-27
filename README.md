@@ -13,7 +13,6 @@
 
 ## Gitコマンド
 
->$ git config --global user.name "メインアカウント"
->$ git config --global user.email "メインアカウントメールアドレス"
-
->$ git clone https://github.com/nakedt555/tetris
+>$ git config --global user.name "メインアカウント"  
+>$ git config --global user.email "メインアカウントメールアドレス"  
+>$ git clone https://github.com/nakedt555/tetris    
