@@ -13,6 +13,9 @@
 
 ## Gitコマンド
 
->$ git config --global user.name "メインアカウント"  
->$ git config --global user.email "メインアカウントメールアドレス"  
->$ git clone https://github.com/nakedt555/tetris    
+>$ git config --global user.name "johouA16"  
+>$ git config --global user.email "johoua16@gmail.com"  
+>$ git clone https://github.com/johouA16/tetris.git  
+
+>$ git commit -m 'コメント'  
+>$ git push origin ブランチ名
