@@ -9,3 +9,11 @@
 - スコアに応じてスピード増加
 - 上ボタンで一瞬におちるやつ
 - PAUSE画面
+
+
+## Gitコマンド
+
+>$ git config --global user.name "メインアカウント"
+>$ git config --global user.email "メインアカウントメールアドレス"
+
+>$ git clone https://github.com/nakedt555/tetris
