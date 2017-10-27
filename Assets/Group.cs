@@ -89,7 +89,8 @@ public class Group : MonoBehaviour {
         }
 
         // Move Downwards and Fall
-        else if (Input.GetKeyDown(KeyCode.DownArrow) ||
+        else if ((Input.GetKey(KeyCode.DownArrow) &&
+                 Time.time - lastFall >= 0.1) ||
                  Time.time - lastFall >= 1)
         {
             // Modify position
@@ -129,6 +130,7 @@ public class Group : MonoBehaviour {
             {
                 Debug.Log("GAME OVER");
                 Destroy(gameObject);
+                GameOverFlag.End_flag = true;
             }
         }
     }
