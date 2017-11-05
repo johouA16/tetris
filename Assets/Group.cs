@@ -87,10 +87,8 @@ public class Group : MonoBehaviour {
                 // It's not valid. revert.
                 transform.Rotate(0, 0, 90);
         }
-
         // Move Downwards and Fall
-        else if ((Input.GetKey(KeyCode.DownArrow) &&
-                 Time.time - lastFall >= 0.1) ||
+        else if ((Input.GetKey(KeyCode.DownArrow) && Time.time - lastFall >= 0.1) ||
                  Time.time - lastFall >= 1)
         {
             // Modify position
@@ -115,9 +113,41 @@ public class Group : MonoBehaviour {
 
                 // Disable script
                 enabled = false;
+                Debug.Log("debug_Down");
             }
 
             lastFall = Time.time;
+        }
+        // Fall
+        else if (Input.GetKeyUp(KeyCode.Space))
+        {
+            while (true)
+            {
+
+                transform.position += new Vector3(0, -1, 0);
+
+                if (!isValidGridPos())
+                {
+                    // It's not valid. revert.
+                    transform.position += new Vector3(0, 1, 0);
+                    break;
+                }
+
+
+            }
+            updateGrid();
+
+
+            // Clear filled horizontal lines
+            Grid.deleteFullRows();
+
+            // Spawn next Group
+            FindObjectOfType<Spawner>().spawnNext();
+
+            // Disable script
+            enabled = false;
+            Debug.Log("debug_Space");
+
         }
     }
 
