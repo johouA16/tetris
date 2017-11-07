@@ -62,14 +62,35 @@ public class Grid : MonoBehaviour {
 
     public static void deleteFullRows()
     {
+        int num = 0;
         for (int y = 0; y < h; ++y)
         {
             if (isRowFull(y))
             {
+                num++;
                 deleteRow(y);
                 decreaseRowsAbove(y + 1);
                 --y;
             }
+        }
+
+        switch (num)
+        {
+            case 1:
+                ScoreText.addScore(40);
+                break;
+            case 2:
+                ScoreText.addScore(100);
+                break;
+            case 3:
+                ScoreText.addScore(300);
+                break;
+            case 4:
+                ScoreText.addScore(1200);
+                break;
+            default:
+
+                break;
         }
     }
 }

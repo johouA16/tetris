@@ -121,6 +121,8 @@ public class Group : MonoBehaviour {
         // Fall
         else if (Input.GetKeyUp(KeyCode.Space))
         {
+            int score = 0;
+
             while (true)
             {
 
@@ -132,11 +134,13 @@ public class Group : MonoBehaviour {
                     transform.position += new Vector3(0, 1, 0);
                     break;
                 }
-
+                score++;
 
             }
             updateGrid();
 
+            //スコア加算
+            ScoreText.addScore(score);
 
             // Clear filled horizontal lines
             Grid.deleteFullRows();
