@@ -54,7 +54,7 @@
      <Compile Include="Assets\Game_Start_End.cs" />
      <Compile Include="Assets\Grid.cs" />
      <Compile Include="Assets\Group.cs" />
-     <Compile Include="Assets\NewBehaviourScript.cs" />
+     <Compile Include="Assets\Hold.cs" />
      <Compile Include="Assets\Spawner.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

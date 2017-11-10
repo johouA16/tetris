@@ -2,7 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawner : MonoBehaviour {
+
+public class GroupChecker
+{
+    public static int Next_Group = -1;
+    public static int Current_Group = 1;
+
+}
+
+public class Spawner : MonoBehaviour
+{
 
     // Groups
     public GameObject[] groups;
@@ -25,14 +34,15 @@ public class Spawner : MonoBehaviour {
 
     void moveObject(GameObject fallObject)
     {
+        GroupChecker.Current_Group = GroupChecker.Next_Group;
         fallObject.transform.position = new Vector3(4, 14, -10);
     }
 
     GameObject createMino()
     {
         // Random Index
-        int i = Random.Range(0, groups.Length);
-
+        int i =Random.Range(0, groups.Length);
+        GroupChecker.Next_Group = i;
         // Spawn Group at current Position
         return Instantiate(groups[i],
                     transform.position,
@@ -45,6 +55,18 @@ public class Spawner : MonoBehaviour {
         spawnNext();
         isExistNextZone = true;
     }
-
-
+ 
+    
+   void Update()
+    {
+        Debug.Log("Late Update");
+        if (Input.GetKeyUp(KeyCode.H) && Hold_Flag.hold_flag == false)
+        {
+            
+            moveObject(next);
+            next = createMino();            
+            Hold_Flag.hold_flag = true;
+            Debug.Log("Flag change");
+        }
+    } 
 }

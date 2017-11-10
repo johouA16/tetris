@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Group : MonoBehaviour {
+
+public class Group : MonoBehaviour
+{ 
+
     // Time since last gravity tick
     float lastFall = 0;
-
+    bool isHold = false;
 
     bool isValidGridPos()
     {
@@ -74,6 +77,11 @@ public class Group : MonoBehaviour {
                 transform.position += new Vector3(-1, 0, 0);
         }
 
+        else if (Input.GetKeyDown(KeyCode.H))
+        {
+            GameObject.Destroy(gameObject);
+        }
+
         // Rotate
         else if (Input.GetKeyDown(KeyCode.UpArrow))
         {
@@ -87,6 +95,8 @@ public class Group : MonoBehaviour {
                 // It's not valid. revert.
                 transform.Rotate(0, 0, 90);
         }
+
+
 
         // Move Downwards and Fall
         else if ((Input.GetKey(KeyCode.DownArrow) &&
@@ -121,6 +131,7 @@ public class Group : MonoBehaviour {
         }
     }
 
+
     // Use this for initialization
     void Start()
     {
@@ -134,9 +145,10 @@ public class Group : MonoBehaviour {
             }
         }
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         //Debug.Log(transform.position.x);
         //fall_sequence();
 
@@ -144,5 +156,7 @@ public class Group : MonoBehaviour {
         {
             fall_sequence();
         }
+
+       
     }
 }
