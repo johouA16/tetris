@@ -19,9 +19,14 @@
 
 ## Gitコマンド
 
+### 変更を更新するとき
+
+>$ git add .  
+>$ git commit -m 'コメント(必須)'  
+>$ git push origin makibudhi(ここは自分の名前)
+
+### 一番最初の設定
+
 >$ git config --global user.name "johouA16"  
 >$ git config --global user.email "johoua16@gmail.com"  
 >$ git clone https://github.com/johouA16/tetris.git  
-
->$ git commit -m 'コメント'  
->$ git push origin ブランチ名
