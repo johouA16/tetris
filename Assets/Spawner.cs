@@ -57,16 +57,14 @@ public class Spawner : MonoBehaviour
     }
  
     
-   void Update()
+   void LateUpdate()
     {
-        Debug.Log("Late Update");
         if (Input.GetKeyUp(KeyCode.H) && Hold_Flag.hold_flag == false)
         {
-            
-            moveObject(next);
-            next = createMino();            
             Hold_Flag.hold_flag = true;
-            Debug.Log("Flag change");
+            moveObject(next);
+            next = createMino();
+
         }
     } 
 }

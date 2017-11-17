@@ -5,6 +5,7 @@ using UnityEngine;
 public class Hold_Flag
 {
     public static bool hold_flag = false;
+    public static bool second_ban = false;
 }
 
 public class Hold : MonoBehaviour {
@@ -27,15 +28,14 @@ public class Hold : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-        if (Input.GetKeyUp(KeyCode.H))
+        if (Input.GetKeyUp(KeyCode.H) && Hold_Flag.second_ban == false)
         {
             if (Hold_Flag.hold_flag == true)
             {
-                Debug.Log("before move");
                 hold.transform.position = new Vector3(4, 14, -10);
-                Debug.Log("move");
             }
             hold = createMino();
+            Hold_Flag.second_ban = true;
         }
         
 

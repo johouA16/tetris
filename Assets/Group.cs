@@ -8,7 +8,6 @@ public class Group : MonoBehaviour
 
     // Time since last gravity tick
     float lastFall = 0;
-    bool isHold = false;
 
     bool isValidGridPos()
     {
@@ -77,7 +76,8 @@ public class Group : MonoBehaviour
                 transform.position += new Vector3(-1, 0, 0);
         }
 
-        else if (Input.GetKeyDown(KeyCode.H))
+        //Hold 
+        else if (Input.GetKeyDown(KeyCode.H) && Hold_Flag.second_ban == false)
         {
             GameObject.Destroy(gameObject);
         }
@@ -89,18 +89,46 @@ public class Group : MonoBehaviour
 
             // See if valid
             if (isValidGridPos())
-                // It's valid. Update grid.
                 updateGrid();
             else
-                // It's not valid. revert.
-                transform.Rotate(0, 0, 90);
+            {
+                transform.position += new Vector3(-1, 0, 0);
+                if (isValidGridPos())
+                    updateGrid();               
+                else
+                {
+                    transform.position += new Vector3(-1, 0, 0);
+                    if (isValidGridPos())
+                        updateGrid();
+                    else
+                    {
+
+                        transform.position += new Vector3(3, 0, 0);
+                        if (isValidGridPos())
+                            updateGrid();
+                        else
+                        {
+                            transform.position += new Vector3(1, 0, 0);
+                            if (isValidGridPos())
+                                updateGrid();
+                            else
+                            {
+                                // It's not valid. revert.
+                                transform.Rotate(0, 0, 90);
+                                transform.position += new Vector3(-2, 0, 0);
+                            }
+                        }
+                    }
+                }
+            }
+            
         }
 
 
 
         // Move Downwards and Fall
         else if ((Input.GetKey(KeyCode.DownArrow) &&
-                 Time.time - lastFall >= 0.1) ||
+                 Time.time - lastFall >= 0.075) ||
                  Time.time - lastFall >= 1)
         {
             // Modify position
@@ -116,6 +144,7 @@ public class Group : MonoBehaviour
             {
                 // It's not valid. revert.
                 transform.position += new Vector3(0, 1, 0);
+                Hold_Flag.second_ban = false;
 
                 // Clear filled horizontal lines
                 Grid.deleteFullRows();
