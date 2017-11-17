@@ -81,6 +81,7 @@
     <Compile Include="Assets\Game_Start_End.cs" />
     <Compile Include="Assets\Grid.cs" />
     <Compile Include="Assets\Group.cs" />
+    <Compile Include="Assets\Pause.cs" />
     <Compile Include="Assets\ScoreText.cs" />
     <Compile Include="Assets\Spawner.cs" />
   </ItemGroup>

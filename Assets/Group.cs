@@ -153,6 +153,10 @@ public class Group : MonoBehaviour {
             Debug.Log("debug_Space");
 
         }
+        //else if (Input.GetKeyUp(KeyCode.Escape))
+        //{
+        //    Pause.GameStop();
+        //}
     }
 
     // Use this for initialization
@@ -176,7 +180,14 @@ public class Group : MonoBehaviour {
 
         if (0 <= transform.position.x && transform.position.x <= 9)
         {
-            fall_sequence();
+            if (Time.timeScale > 0) {
+                fall_sequence();
+            }   
+
+            if (Input.GetKeyUp(KeyCode.Escape))
+            {
+                Pause.GameStop();
+            }
         }
     }
 }
