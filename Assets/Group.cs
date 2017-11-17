@@ -73,6 +73,12 @@ public class Group : MonoBehaviour {
                 // It's not valid. revert.
                 transform.position += new Vector3(-1, 0, 0);
         }
+        
+        //Hold 
+        else if (Input.GetKeyDown(KeyCode.H) && Hold_Flag.second_ban == false)
+        {
+            GameObject.Destroy(gameObject);
+        }
 
         // Rotate
         else if (Input.GetKeyDown(KeyCode.UpArrow))
@@ -81,11 +87,38 @@ public class Group : MonoBehaviour {
 
             // See if valid
             if (isValidGridPos())
-                // It's valid. Update grid.
                 updateGrid();
             else
-                // It's not valid. revert.
-                transform.Rotate(0, 0, 90);
+            {
+                transform.position += new Vector3(-1, 0, 0);
+                if (isValidGridPos())
+                    updateGrid();
+                else
+                {
+                    transform.position += new Vector3(-1, 0, 0);
+                    if (isValidGridPos())
+                        updateGrid();
+                    else
+                    {
+
+                        transform.position += new Vector3(3, 0, 0);
+                        if (isValidGridPos())
+                            updateGrid();
+                        else
+                        {
+                            transform.position += new Vector3(1, 0, 0);
+                            if (isValidGridPos())
+                                updateGrid();
+                            else
+                            {
+                                // It's not valid. revert.
+                                transform.Rotate(0, 0, 90);
+                                transform.position += new Vector3(-2, 0, 0);
+                            }
+                        }
+                    }
+                }
+            }
         }
         // Move Downwards and Fall
         else if ((Input.GetKey(KeyCode.DownArrow) && Time.time - lastFall >= 0.1) ||
@@ -104,6 +137,8 @@ public class Group : MonoBehaviour {
             {
                 // It's not valid. revert.
                 transform.position += new Vector3(0, 1, 0);
+
+                Hold_Flag.second_ban = false;
 
                 // Clear filled horizontal lines
                 Grid.deleteFullRows();
@@ -139,6 +174,8 @@ public class Group : MonoBehaviour {
             }
             updateGrid();
 
+            Hold_Flag.second_ban = false;
+
             //スコア加算
             ScoreText.addScore(score);
 
@@ -153,10 +190,6 @@ public class Group : MonoBehaviour {
             Debug.Log("debug_Space");
 
         }
-        //else if (Input.GetKeyUp(KeyCode.Escape))
-        //{
-        //    Pause.GameStop();
-        //}
     }
 
     // Use this for initialization
