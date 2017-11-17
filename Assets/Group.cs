@@ -6,6 +6,7 @@ public class Group : MonoBehaviour {
     // Time since last gravity tick
     float lastFall = 0;
 
+    public static double fallTime = 1.0;
 
     bool isValidGridPos()
     {
@@ -122,7 +123,7 @@ public class Group : MonoBehaviour {
         }
         // Move Downwards and Fall
         else if ((Input.GetKey(KeyCode.DownArrow) && Time.time - lastFall >= 0.1) ||
-                 Time.time - lastFall >= 1)
+                 Time.time - lastFall >= fallTime)
         {
             // Modify position
             transform.position += new Vector3(0, -1, 0);
@@ -146,9 +147,15 @@ public class Group : MonoBehaviour {
                 // Spawn next Group
                 FindObjectOfType<Spawner>().spawnNext();
 
+                // 落ちるのが早くなるところ
+                if (ScoreText.addFallBlocks() % 1 == 0)
+                {
+                    fallTime -= 0.1;
+                    Debug.Log("fallTime ->" + fallTime.ToString());
+                }
+
                 // Disable script
                 enabled = false;
-                Debug.Log("debug_Down");
             }
 
             lastFall = Time.time;
@@ -185,10 +192,15 @@ public class Group : MonoBehaviour {
             // Spawn next Group
             FindObjectOfType<Spawner>().spawnNext();
 
+            // 落ちるのが早くなるところ
+            if (ScoreText.addFallBlocks() % 1 == 0)
+            {
+                fallTime -= 0.1;
+                Debug.Log("fallTime ->" + fallTime.ToString());
+            }
+
             // Disable script
             enabled = false;
-            Debug.Log("debug_Space");
-
         }
     }
 

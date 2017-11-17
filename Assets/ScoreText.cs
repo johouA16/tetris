@@ -8,6 +8,18 @@ public class ScoreText : MonoBehaviour {
     //点数を格納する変数
     public static int Score = 0;
 
+    //地面に設置したブロックの総数
+    public static int FallBlocksNum = 0;
+
+    //FallBlocksNumをインクリメントし、今までの総数を返す
+    public static int addFallBlocks()
+    {
+        FallBlocksNum++;
+        Debug.Log("sum block ->" + FallBlocksNum.ToString());
+
+        return FallBlocksNum;
+    }
+
     public static void addScore(int score)
     {
         Score += score;
