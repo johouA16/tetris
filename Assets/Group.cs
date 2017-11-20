@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// 定数を定義
+public static class Define
+{
+    // 落ちるスピードが変化するミノの個数
+    public const int SPEED_UP_NUM = 10;
+}
+
 public class Group : MonoBehaviour {
     // Time since last gravity tick
     float lastFall = 0;
@@ -148,7 +155,7 @@ public class Group : MonoBehaviour {
                 FindObjectOfType<Spawner>().spawnNext();
 
                 // 落ちるのが早くなるところ
-                if (ScoreText.addFallBlocks() % 1 == 0)
+                if (ScoreText.addFallBlocks() % Define.SPEED_UP_NUM == 0)
                 {
                     fallTime -= 0.1;
                     Debug.Log("fallTime ->" + fallTime.ToString());
@@ -193,7 +200,7 @@ public class Group : MonoBehaviour {
             FindObjectOfType<Spawner>().spawnNext();
 
             // 落ちるのが早くなるところ
-            if (ScoreText.addFallBlocks() % 1 == 0)
+            if (ScoreText.addFallBlocks() % Define.SPEED_UP_NUM == 0)
             {
                 fallTime -= 0.1;
                 Debug.Log("fallTime ->" + fallTime.ToString());
